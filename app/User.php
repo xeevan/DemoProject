@@ -54,4 +54,9 @@ class User extends Authenticatable implements MustVerifyEmail
         }
         return false;
     }
+
+    public function images()
+    {
+        return $this->hasMany('App\Image');
+    }
 }
