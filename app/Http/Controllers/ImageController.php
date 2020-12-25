@@ -26,20 +26,20 @@ class ImageController extends Controller
     }
 
     public function store(Request $request){
-        $request->validate([
+        $validated_data = $request->validate([
             'img_url'=> ['required'],
             'img_description' => ['required']
         ]);
-        $data = array();
-        $data['user_id'] = $request->user()->id;
-        $data['img_description'] = $request->img_description;
+
+        $validated_data['user_id'] = $request->user()->id;
+        $validated_data['img_description'] = $request->img_description;
         $image = $request->file('img_url');
 
         if($image){
-            $data['img_url'] = $this->uploadImage($image);
+            $validated_data['img_url'] = $this->uploadImage($image);
         }
 
-        DB::table('images')->insert($data);
+        DB::table('images')->insert($validated_data);
         return redirect()->route('image.create')->with('success', 'Image added successfully!');
     }
 
