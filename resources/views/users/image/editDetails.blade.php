@@ -5,7 +5,7 @@
 @section('content')
     <!-- Main Container -->
     <div class="main-container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mb-3">
             <div class="card mb-3 col-md-8 card-margin-top">
                 <div class="card-body">
                     <h4 class="card-title">Upload Image</h4>

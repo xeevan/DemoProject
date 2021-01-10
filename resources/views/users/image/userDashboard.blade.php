@@ -5,7 +5,7 @@
 @section('content')
     <!-- Main Container -->
     <div class="main-container">
-        <div class="row">
+        <div class="row mb-3">
             @if($message = Session::get('success'))
                 <div class="col-md-12 card-margin-top">
                     <div class="alert alert-success">
@@ -38,6 +38,9 @@
                     <h5>Nothing to Display</h5>
                 </div>
             @endforelse
+        </div>
+        <div class="d-flex justify-content-center">
+            {{ $images->links() }}
         </div>
     </div>
 @endsection

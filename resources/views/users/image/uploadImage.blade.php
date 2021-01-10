@@ -5,7 +5,7 @@
 @section('content')
     <!-- Main Container -->
     <div class="main-container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mb-3">
             <div class="col-md-8 card-margin-top">
                 @if($message = Session::get('success'))
                     <div class="alert alert-success">

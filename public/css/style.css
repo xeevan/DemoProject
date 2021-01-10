@@ -85,3 +85,8 @@
     .sidebar a {font-size: 18px;}
 }
 /*--CSS for sidebar end--*/
+
+.flex-header{
+    display: flex;
+    justify-content: space-between;
+}

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use App\Image;
 
 class ImageController extends Controller
 {
@@ -17,7 +18,7 @@ class ImageController extends Controller
     }
 
     public function index(){
-        $images = DB::table('images')->where('user_id', Auth::user()->id)->get();
+        $images = Image::where('user_id', auth()->user()->id)->paginate(6);
         return view('users.image.userDashboard', compact('images'));
     }
 
@@ -39,7 +40,9 @@ class ImageController extends Controller
             $validated_data['img_url'] = $this->uploadImage($image);
         }
 
-        DB::table('images')->insert($validated_data);
+        $image = Image::create($validated_data);
+        /*$image->created_at = now()->subDays(1);
+        $image->save();*/
         return redirect()->route('image.create')->with('success', 'Image added successfully!');
     }
 

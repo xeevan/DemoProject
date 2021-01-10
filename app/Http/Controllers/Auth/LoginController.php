@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -45,9 +46,11 @@ class LoginController extends Controller
     public function authenticated(Request $request, $user)
     {
         if(Gate::denies('manage-users')){
+            $user->last_logged_in_at = now();
+            $user->save();
             return redirect()->route('image.index');
         }
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.dashboard');
     }
 
     public function loggedOut(Request $request)
